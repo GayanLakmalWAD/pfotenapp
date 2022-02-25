@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pfoten/utils/colors.dart';
+import 'package:sizer/sizer.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -13,35 +14,15 @@ class SplashScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.center,
-            children: const [
+            children: [
               Text(
                 "Pfoten",
                 style: TextStyle(
                   fontFamily: "IndieFlower",
-                  fontSize: 85,
+                  fontSize: 75.sp,
                   color: primaryColor
                 ),
               ),
-              // Container(
-              //   height: 100,
-              //   width: 100,
-              //   color: primaryColor,
-              // ),
-              // Container(
-              //   height: 100,
-              //   width: 100,
-              //   color: secondaryColor,
-              // ),
-              // Container(
-              //   height: 100,
-              //   width: 100,
-              //   color: accentColor,
-              // ),
-              // Container(
-              //   height: 100,
-              //   width: 100,
-              //   color: secondaryAccentColor,
-              // ),
             ],
           ),
         ),
