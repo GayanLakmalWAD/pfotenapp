@@ -16,6 +16,9 @@ dependencies:
   provider: ^6.0.2
 #  blobs: ^2.0.0
   sizer: ^2.0.15
+  shrink_sidemenu: ^2.0.0+2-null-safety
+  flutter_datetime_picker: ^1.5.1
+  intl: ^0.17.0
 
 #  google_fonts: ^2.3.1
 

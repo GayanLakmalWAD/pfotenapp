@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:pfoten/screens/getPetDetailsScreen.dart';
 import 'package:pfoten/utils/colors.dart';
 import 'package:sizer/sizer.dart';
 
@@ -19,14 +20,14 @@ const pets = [
       title: 'CAT'),
 ];
 
-class GetInfoScreen extends StatefulWidget {
-  const GetInfoScreen({Key? key}) : super(key: key);
+class ChoosePetScreen extends StatefulWidget {
+  const ChoosePetScreen({Key? key}) : super(key: key);
 
   @override
-  _GetInfoScreenState createState() => _GetInfoScreenState();
+  _ChoosePetScreenState createState() => _ChoosePetScreenState();
 }
 
-class _GetInfoScreenState extends State<GetInfoScreen> {
+class _ChoosePetScreenState extends State<ChoosePetScreen> {
   final pageController = PageController(viewportFraction: 0.7);
   final ValueNotifier<double?> _pageNotifier = ValueNotifier(0.0);
 
@@ -183,37 +184,45 @@ class _GetInfoScreenState extends State<GetInfoScreen> {
               left: size.width / 3.3,
               bottom: 40,
               width: size.width / 2.5,
-              child: Container(
-                height: 45,
-                decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.all(
-                        Radius.circular(25)
-                    ),
-                    color: primaryColor
-                ),
-                child: Center(
-                  child: Text(
-                    'SELECT',
-                    style: TextStyle(
-                        fontFamily: "RobotoSlab",
-                        fontWeight: FontWeight.bold,
-                        fontSize: 13.sp,
-                        color: colorWhite
+              child: GestureDetector(
+                onTap: (){
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const GetPetDetailsScreen()),
+                  );
+                },
+                child: Container(
+                  height: 45,
+                  decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.all(
+                          Radius.circular(10)
+                      ),
+                      color: primaryColor
+                  ),
+                  child: Center(
+                    child: Text(
+                      'SELECT',
+                      style: TextStyle(
+                          fontFamily: "RobotoSlab",
+                          fontWeight: FontWeight.bold,
+                          fontSize: 13.sp,
+                          color: colorWhite
+                      ),
                     ),
                   ),
                 ),
               ),
             ),
-            const Positioned(
-              top: 30,
-              left: 10,
+            Positioned(
+              top: 2.h,
+              left: 3.w,
               child: DecoratedBox(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                 ),
                 child: CircleAvatar(
                   backgroundColor: primaryColor,
-                  radius: 23,
-                  child: Center(
+                  radius: 18.sp,
+                  child: const Center(
                     child: BackButton(
                       color: Colors.white,
                     ),
@@ -222,17 +231,16 @@ class _GetInfoScreenState extends State<GetInfoScreen> {
               ),
             ),
             Positioned(
-              top: 15.h,
+              top: 3.5.h,
+              left: 26.w,
               width: 100.w,
-              child: Center(
-                child: Text("CHOOSE YOUR PET TYPE",
-                  style: TextStyle(
-                    fontFamily: "RobotoSlab",
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18.sp,
-                  ),
+              child: Text("Choose your Pet type",
+                style: TextStyle(
+                  fontFamily: "Roboto",
+                  fontWeight: FontWeight.bold,
+                  fontSize: 15.sp,
                 ),
-              )
+              ),
             ),
           ],
         ),

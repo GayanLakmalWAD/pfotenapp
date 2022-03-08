@@ -6,3 +6,4 @@ const secondaryAccentColor = Color(0xff68B0AB);
 const accentColor = Color(0xffEAFFD0);
 const scaffoldBackgroundColor = Color(0xffEEEEEE);
 const colorWhite = Colors.white;
+const colorBlack = Colors.black;

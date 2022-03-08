@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pfoten/getInfoScreen.dart';
+import 'package:pfoten/screens/choosePetScreen.dart';
 import 'package:pfoten/reuasble/customPath.dart';
 import 'package:pfoten/utils/colors.dart';
 import 'package:sizer/sizer.dart';
@@ -167,7 +167,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           if(_currentPage==2){
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => const GetInfoScreen()),
+                              MaterialPageRoute(builder: (context) => const ChoosePetScreen()),
                             );
                           }else{
                             _pageController.nextPage(
