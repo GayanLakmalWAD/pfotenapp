@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:pfoten/utils/colors.dart';
 import 'package:sizer/sizer.dart';
 
@@ -45,7 +46,6 @@ class _CustomTextFieldState extends State<CustomTextField> {
           child: Text(
               widget.textFieldName!,
             style: TextStyle(
-              fontFamily: "Roboto",
               fontWeight: FontWeight.bold,
               fontSize: 12.sp,
             ),
@@ -55,11 +55,11 @@ class _CustomTextFieldState extends State<CustomTextField> {
           controller: widget.controller,
           style: TextStyle(
             fontWeight: FontWeight.w400,
-            fontFamily: "Roboto",
             fontStyle: FontStyle.normal,
             fontSize: 12.sp,
           ),
           textCapitalization: TextCapitalization.sentences,
+          keyboardType: widget.textFieldName == "Weight" ? TextInputType.number : TextInputType.text,
           decoration: InputDecoration(
               enabledBorder: const UnderlineInputBorder(
                 borderSide: BorderSide(color: primaryColor),
@@ -68,7 +68,6 @@ class _CustomTextFieldState extends State<CustomTextField> {
                 borderSide: BorderSide(color: secondaryColor),
               ),
               labelStyle:  TextStyle(
-                fontFamily: "Roboto",
                 fontWeight: FontWeight.w300,
                 fontSize: 12.sp,
               ),
@@ -76,7 +75,6 @@ class _CustomTextFieldState extends State<CustomTextField> {
               hintStyle: TextStyle(
                   color:  Colors.black.withOpacity(widget.isHint ? 0.5 : 1),
                   fontWeight: FontWeight.w400,
-                  fontFamily: "Roboto",
                   fontStyle: FontStyle.normal,
                   fontSize: 12.sp),
               prefixIcon: widget.prefix,

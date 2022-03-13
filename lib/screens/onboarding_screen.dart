@@ -64,7 +64,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               Text(
                 subTopic,
                 style: TextStyle(
-                    fontFamily: "Roboto",
                     fontWeight: FontWeight.w300,
                     fontSize: 10.sp,
                 ),

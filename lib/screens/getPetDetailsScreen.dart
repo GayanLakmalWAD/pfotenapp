@@ -47,6 +47,12 @@ class _GetPetDetailsScreenState extends State<GetPetDetailsScreen> {
     }
   }
 
+  String? selectedValue;
+  List<String> items = [
+    'Male',
+    'Female',
+  ];
+
   @override
   Widget build(BuildContext context) {
 
@@ -76,7 +82,6 @@ class _GetPetDetailsScreenState extends State<GetPetDetailsScreen> {
                     padding: EdgeInsets.only(left: 22.w),
                     child: Text("Pet Details",
                       style: TextStyle(
-                        fontFamily: "Roboto",
                         fontWeight: FontWeight.bold,
                         fontSize: 15.sp,
                       ),
@@ -175,7 +180,6 @@ class _GetPetDetailsScreenState extends State<GetPetDetailsScreen> {
                             Text(
                               "Date of Birth",
                               style: TextStyle(
-                                fontFamily: "Roboto",
                                 fontWeight: FontWeight.bold,
                                 fontSize: 12.sp,
                               ),
@@ -220,7 +224,6 @@ class _GetPetDetailsScreenState extends State<GetPetDetailsScreen> {
                                   child: Text(
                                     '$dob',
                                     style: TextStyle(
-                                      fontFamily: "Roboto",
                                       fontWeight: FontWeight.w300,
                                       fontSize: 12.sp,
                                     ),
@@ -242,27 +245,58 @@ class _GetPetDetailsScreenState extends State<GetPetDetailsScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Expanded(
-                            child: CustomTextField(
-                              isHint: true,
-                              textFieldName: "Gender",
-                              controller: genderController,
-                              hint: "Male",
-                              typedText: genderController.text,
-                              obscureText: false,
-                              onSubmit: (){
-
-                              },
-                              onChangedText: (test){
-                                Future.delayed(const Duration(milliseconds: 1), () {
-                                  setState(() {
-                                    if (genderController.text != test) {
-                                      test = genderController.text;
-                                      print("New value inserted in firstNameController ${genderController.text}");
-                                    }
-                                  });
-                                });
-
-                              },
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Gender",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 12.sp,
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 0.0),
+                                  child: DropdownButton<String>(
+                                    value: selectedValue,
+                                    isExpanded: true,
+                                    icon:  const Icon(Icons.arrow_drop_down, color: Colors.black,),
+                                    dropdownColor: Colors.white,
+                                    underline: Container(
+                                    ),
+                                    hint: const Text(
+                                        'All',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w400,
+                                            fontStyle: FontStyle.normal,
+                                            color: Colors.black
+                                        )
+                                    ),
+                                    items: items.map((String map) {
+                                      return DropdownMenuItem<String>(
+                                        value: map,
+                                        child: Text(
+                                          map,
+                                          style: const TextStyle(
+                                              fontStyle: FontStyle.normal,
+                                              color: Colors.black
+                                          ),
+                                        ),
+                                      );
+                                    }).toList(),
+                                    onChanged: (String? value) {
+                                      setState(() {
+                                        selectedValue = value;
+                                        print(value);
+                                      });
+                                    },
+                                  ),
+                                ),
+                                Container(
+                                    height: 0.15.h,
+                                    color: primaryColor
+                                )
+                              ],
                             ),
                           ),
                           SizedBox(
@@ -299,7 +333,7 @@ class _GetPetDetailsScreenState extends State<GetPetDetailsScreen> {
                         child: Text(
                           "You can add more pets later :)",
                           style: TextStyle(
-                              fontFamily: "Roboto",
+
                               fontWeight: FontWeight.w300,
                               fontSize: 10.sp
                           ),
@@ -331,7 +365,6 @@ class _GetPetDetailsScreenState extends State<GetPetDetailsScreen> {
                                 child: Text(
                                   'Continue',
                                   style: TextStyle(
-                                      fontFamily: "Roboto",
                                       fontWeight: FontWeight.bold,
                                       fontSize: 13.sp,
                                       color: colorWhite

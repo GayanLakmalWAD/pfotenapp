@@ -236,7 +236,6 @@ class _ChoosePetScreenState extends State<ChoosePetScreen> {
               width: 100.w,
               child: Text("Choose your Pet type",
                 style: TextStyle(
-                  fontFamily: "Roboto",
                   fontWeight: FontWeight.bold,
                   fontSize: 15.sp,
                 ),

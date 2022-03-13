@@ -16,12 +16,11 @@ class PfotenApp extends StatelessWidget {
             SizerUtil.setScreenSize(constraints, orientation);
             return MaterialApp(
               title: 'Flutter Demo',
-              theme: ThemeData.light().copyWith(
+              theme: ThemeData(
+                  primaryColor: primaryColor,
                   scaffoldBackgroundColor: scaffoldBackgroundColor,
-                  // textTheme: GoogleFonts.robotoSlabTextTheme(
-                  //     Theme.of(context).textTheme.apply(bodyColor: colorWhite)
-                  // ),
-                  canvasColor: secondaryColor
+                  canvasColor: secondaryColor,
+                  fontFamily: "Roboto"
               ),
               home: const OnboardingScreen(),
             );
