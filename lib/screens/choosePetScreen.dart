@@ -214,8 +214,8 @@ class _ChoosePetScreenState extends State<ChoosePetScreen> {
               ),
             ),
             Positioned(
-              top: 2.h,
-              left: 3.w,
+              top: 15,
+              left: 15,
               child: DecoratedBox(
                 decoration: const BoxDecoration(
                 ),

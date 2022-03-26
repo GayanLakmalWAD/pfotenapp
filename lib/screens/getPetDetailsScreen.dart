@@ -7,6 +7,8 @@ import 'package:pfoten/utils/colors.dart';
 import 'package:sizer/sizer.dart';
 import 'package:intl/intl.dart';
 
+import 'bottom_Nav.dart';
+
 class GetPetDetailsScreen extends StatefulWidget {
   const GetPetDetailsScreen({Key? key}) : super(key: key);
 
@@ -59,7 +61,7 @@ class _GetPetDetailsScreenState extends State<GetPetDetailsScreen> {
     return SafeArea(
       child: Scaffold(
         body: Padding(
-          padding: EdgeInsets.only(left: 3.w, top: 2.h, right: 3.w),
+          padding: const EdgeInsets.only(left: 15, top: 15, right: 15),
           child: Stack(
             children: [
               Row(
@@ -90,7 +92,7 @@ class _GetPetDetailsScreenState extends State<GetPetDetailsScreen> {
                 ],
               ),
               Padding(
-                padding: EdgeInsets.only(top: 8.h, left: 3.w, right: 3.w),
+                padding: const EdgeInsets.only(top: 75, left: 15, right: 15),
                 child: SingleChildScrollView(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -126,8 +128,8 @@ class _GetPetDetailsScreenState extends State<GetPetDetailsScreen> {
                                   backgroundColor: secondaryColor,
                                   radius: 16.sp,
                                   child: Container(
-                                    height: 25.sp,
-                                    width: 25.sp,
+                                    height: 35,
+                                    width: 35,
                                     decoration: const BoxDecoration(
                                       shape: BoxShape.circle,
                                       color: primaryColor,
@@ -144,8 +146,8 @@ class _GetPetDetailsScreenState extends State<GetPetDetailsScreen> {
                           ],
                         ),
                       ),
-                      SizedBox(
-                        height: 3.h,
+                      const SizedBox(
+                        height: 20,
                       ),
                       CustomTextField(
                         isHint: true,
@@ -169,11 +171,11 @@ class _GetPetDetailsScreenState extends State<GetPetDetailsScreen> {
 
                         },
                       ),
-                      SizedBox(
-                        height: 3.h,
+                      const SizedBox(
+                        height: 20,
                       ),
                       Padding(
-                        padding: EdgeInsets.only(top: 1.h),
+                        padding: const EdgeInsets.only(top: 5),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -216,7 +218,7 @@ class _GetPetDetailsScreenState extends State<GetPetDetailsScreen> {
                                   }, currentTime: DateTime.now(),);
                               },
                               child: Container(
-                              height: 5.5.h,
+                              height: 50,
                               width: 100.w,
                               color: scaffoldBackgroundColor,
                               child: Align(
@@ -232,14 +234,14 @@ class _GetPetDetailsScreenState extends State<GetPetDetailsScreen> {
                               ),
                             ),
                             Container(
-                                height: 0.15.h,
+                                height: 1,
                                 color: primaryColor
                             )
                           ],
                         ),
                       ),
-                      SizedBox(
-                        height: 3.h,
+                      const SizedBox(
+                        height: 20,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -292,8 +294,11 @@ class _GetPetDetailsScreenState extends State<GetPetDetailsScreen> {
                                     },
                                   ),
                                 ),
+                                const SizedBox(
+                                  height: 7,
+                                ),
                                 Container(
-                                    height: 0.15.h,
+                                    height: 1,
                                     color: primaryColor
                                 )
                               ],
@@ -329,27 +334,24 @@ class _GetPetDetailsScreenState extends State<GetPetDetailsScreen> {
                         ],
                       ),
                       Padding(
-                        padding: EdgeInsets.only(top: 6.h),
+                        padding: const EdgeInsets.only(top: 50),
                         child: Text(
                           "You can add more pets later :)",
                           style: TextStyle(
-
                               fontWeight: FontWeight.w300,
                               fontSize: 10.sp
                           ),
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(
-                            top: 5.h,
-                        ),
+                        padding: const EdgeInsets.only(top: 40),
                         child: Center(
                           child: GestureDetector(
                             onTap: (){
                               ///validate all the feilds then skip alert>>>>
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => const HomeScreen()),
+                                MaterialPageRoute(builder: (context) => MyHomePage()),
                               );
                             },
                             child: Container(

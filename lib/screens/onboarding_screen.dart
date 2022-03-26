@@ -28,27 +28,27 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         ClipPath(
           clipper: ClipPathClass(),
           child:  Container(
-            height: 45.h,
+            height: 360,
             width: MediaQuery.of(context).size.width,
             color: primaryColor,
           ),
         ),
         Padding(
-          padding: EdgeInsets.only(top: 10.h, left: 10.w),
+          padding: EdgeInsets.only(top: 80, left: 10.w),
           child: Image.asset(
               imgUrl,
-              height: 39.h,
-              width: 39.h,
+              height: 300,
+              width: 300,
               fit: BoxFit.contain
           ),
         ),
         Padding(
-          padding: EdgeInsets.only(top: 48.h, left: 10.w, right: 10.w),
+          padding: const EdgeInsets.only(top: 390, left: 20, right: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(
-                height: 2.h,
+              const SizedBox(
+                height: 15,
               ),
               Text(
                 topic,
@@ -58,8 +58,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     fontSize: 24.sp,
                 ),
               ),
-              SizedBox(
-                height: 2.h,
+              const SizedBox(
+                height: 15,
               ),
               Text(
                 subTopic,
@@ -126,7 +126,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         children: List<Widget>.generate(_pages.length, (int index) {
                           return AnimatedContainer(
                               duration: const Duration(milliseconds: 300),
-                              height: 1.3.h,
+                              height: 10,
                               width: (index == _currentPage) ? 8.w : 2.5.w,
                               margin:
                               const EdgeInsets.symmetric(horizontal: 5, vertical: 30),
@@ -148,7 +148,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             child: Container(
               color: colorWhite,
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 8.w),
+                padding: const EdgeInsets.symmetric(horizontal: 30),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

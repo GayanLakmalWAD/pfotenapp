@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:pfoten/utils/colors.dart';
-import 'package:shrink_sidemenu/shrink_sidemenu.dart';
 import 'package:sizer/sizer.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -11,28 +10,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateMixin{
-  bool isOpened = false;
-
-  final GlobalKey<SideMenuState> _sideMenuKey = GlobalKey<SideMenuState>();
-  final GlobalKey<SideMenuState> _endSideMenuKey = GlobalKey<SideMenuState>();
-
-  toggleMenu([bool end = false]) {
-    if (end) {
-      final _state = _endSideMenuKey.currentState!;
-      if (_state.isOpened) {
-        _state.closeSideMenu();
-      } else {
-        _state.openSideMenu();
-      }
-    } else {
-      final _state = _sideMenuKey.currentState!;
-      if (_state.isOpened) {
-        _state.closeSideMenu();
-      } else {
-        _state.openSideMenu();
-      }
-    }
-  }
 
   static const List<Tab> myTabs = <Tab>[
     Tab(text: 'Ginger'),
@@ -49,82 +26,80 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: SideMenu(
-        key: _endSideMenuKey,
-        inverse: true, // end side menu
-        type: SideMenuType.slideNRotate,
-        menu: Padding(
-          padding: const EdgeInsets.only(left: 25.0),
-          child: buildMenu(),
+    return DefaultTabController(
+      length: myTabs.length,
+      child: Scaffold(
+        appBar: AppBar(
+          elevation: 0,
+          backgroundColor: primaryColor,
+          centerTitle: true,
+          leading: const SizedBox(),
+          flexibleSpace: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              TabBar(
+                indicatorWeight: 3,
+                indicatorColor: secondaryColor,
+                labelColor: Colors.white,
+                labelStyle: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize: 16.sp),
+                unselectedLabelStyle: const TextStyle(fontWeight: FontWeight.normal),
+                controller: _tabController,
+                tabs: myTabs,
+              ),
+            ],
+          ),
+          // flexibleSpace: Padding(
+          //   padding: const EdgeInsets.only(top: 10.0, left: 20, right: 10),
+          //   child: Row(
+          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //     children: [
+          //       GestureDetector(
+          //         onTap: (){
+          //           // _showPicker(context);
+          //         },
+          //         child: CircleAvatar(
+          //           radius: 18.sp,
+          //           backgroundColor: Colors.white,
+          //           child: Image.asset("images/dog.png"),
+          //           // _imageFile == null ?
+          //           // CircleAvatar(
+          //           //   radius: 20,
+          //           //   backgroundColor: Colors.white.withOpacity(0.5),
+          //           //   backgroundImage:
+          //           // ) :
+          //           // CircleAvatar(
+          //           //   radius: widthScale * 20,
+          //           //   backgroundColor: Colors.white,
+          //           //   backgroundImage: FileImage(File(_imageFile!.path)),
+          //           // ),
+          //         ),
+          //       ),
+          //       IconButton(
+          //         icon: const Icon(Icons.notifications_active_outlined, color: primaryColor),
+          //         onPressed: () => null,
+          //       ),
+          //     ],
+          //   ),
+          // ),
+          // bottom: TabBar(
+          //   indicatorWeight: 3,
+          //   indicatorColor: secondaryColor,
+          //   labelColor: Colors.white,
+          //   labelStyle: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize: 16.sp),
+          //   unselectedLabelStyle: const TextStyle(fontWeight: FontWeight.normal),
+          //   controller: _tabController,
+          //   tabs: myTabs,
+          // ),
         ),
-        onChange: (_isOpened) {
-          setState(() => isOpened = _isOpened);
-        },
-        child: SideMenu(
-          key: _sideMenuKey,
-          menu: buildMenu(),
-          background: primaryColor,
-          type: SideMenuType.slideNRotate,
-          onChange: (_isOpened) {
-            setState(() => isOpened = _isOpened);
-          },
-          child: IgnorePointer(
-            ignoring: isOpened,
-            child: Scaffold(
-              appBar: AppBar(
-                elevation: 0,
-                backgroundColor: scaffoldBackgroundColor,
-                centerTitle: true,
-                leading: const SizedBox(),
-                flexibleSpace: Padding(
-                  padding: const EdgeInsets.only(top: 10.0, left: 10, right: 10),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      IconButton(
-                        icon: const Icon(Icons.menu, color: primaryColor,),
-                        onPressed: () => toggleMenu(),
-                      ),
-                      IconButton(
-                        icon: const Icon(Icons.notifications_active_outlined, color: primaryColor),
-                        onPressed: () => null,
-                      ),
-                    ],
-                  ),
-                ),
-                bottom: TabBar(
-                  indicatorWeight: 3,
-                  indicatorColor: secondaryColor,
-                  labelColor: Colors.black,
-                  labelStyle: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize: 16.sp),
-                  unselectedLabelStyle: const TextStyle(fontWeight: FontWeight.normal),
-                  controller: _tabController,
-                  tabs: myTabs,
-                ),
-              ),
-              floatingActionButton: FloatingActionButton(
-                backgroundColor: primaryColor,
-                child: const Icon(Icons.add, color: colorWhite,),
-                onPressed: (){
-
-                },
-              ),
-              body: TabBarView(
-                  controller: _tabController,
-                  children: [
-                    SingleChildScrollView(
-                      child: Column(
-                        children: [
-                          petDetailCard(),
-                          todayNotes()
-                        ],
-                      ),
-                    ),
-                    // showClimateUI(),
-                  ]
-              ),
-            ),
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              petDetailCard(),
+              todayNotes(),
+              Container(
+                color: Colors.white,
+              )
+            ],
           ),
         ),
       ),
@@ -142,8 +117,8 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
             width: 10.w,
           ),
           Container(
-            height: 30.w,
-            width: 30.w,
+            height: 110,
+            width: 110,
             decoration: const BoxDecoration(
               color: colorWhite,
               borderRadius: BorderRadius.all(
@@ -248,7 +223,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                   "Today",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: 14.sp,
+                  fontSize: 15.sp,
                 ),
               ),
               IconButton(
@@ -266,12 +241,71 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
             return Padding(
               padding: const EdgeInsets.fromLTRB(20.0, 8.0, 20, 8.0),
               child: Container(
-                height: 10.h,
                 width: 50.w,
                 decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(15)
                 ),
+               child: Padding(
+                 padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 16),
+                 child: Row(
+                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(
+                            width: 200,
+                            child: Text(
+                              "Vaccination",
+                              style: TextStyle(
+                                fontSize: 14.sp,
+                                fontWeight: FontWeight.bold,
+                                letterSpacing: 0,
+                              ),
+                              textAlign: TextAlign.start,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          SizedBox(
+                            width: 200,
+                            child: Text(
+                              "Sub topic",
+                              style: TextStyle(
+                                fontSize: 12.sp,
+                                fontWeight: FontWeight.w300,
+                                letterSpacing: 0,
+                              ),
+                              textAlign: TextAlign.start,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            "2022/10/06",
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                              color: const Color(0xffbdbdbd),
+                              fontSize: 12.sp,
+                              fontWeight: FontWeight.w600,
+                              fontStyle: FontStyle.normal,
+                              letterSpacing: 0,
+                            ),
+                          ),
+
+
+                        ],
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      const Icon(Icons.notifications_active_outlined, color: primaryColor),
+                    ],
+                  ),
+               )
               ),
             );
           },
