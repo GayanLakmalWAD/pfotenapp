@@ -13,7 +13,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
 
   static const List<Tab> myTabs = <Tab>[
     Tab(text: 'Ginger'),
-    // Tab(text: 'Shadow'),
+    Tab(text: 'Shadow'),
   ];
 
   late TabController _tabController;
@@ -295,8 +295,6 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                               letterSpacing: 0,
                             ),
                           ),
-
-
                         ],
                       ),
                       const SizedBox(

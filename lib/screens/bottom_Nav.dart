@@ -2,6 +2,7 @@ import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.da
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:pfoten/screens/createEditReminderScreen.dart';
 import 'package:pfoten/screens/homeScreen.dart';
 import 'package:pfoten/screens/onboarding_screen.dart';
 import 'package:pfoten/utils/colors.dart';
@@ -93,6 +94,10 @@ class _MyHomePageState extends State<MyHomePage>
           onPressed: () {
             _animationController.reset();
             _animationController.forward();
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const CreateEditReminderScreen()),
+            );
           },
         ),
       ),
