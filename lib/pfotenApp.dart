@@ -1,3 +1,4 @@
+import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:pfoten/splash_screen.dart';
 import 'package:pfoten/utils/colors.dart';
@@ -19,8 +20,18 @@ class PfotenApp extends StatelessWidget {
               theme: ThemeData(
                   primaryColor: primaryColor,
                   scaffoldBackgroundColor: scaffoldBackgroundColor,
-                  canvasColor: secondaryColor,
-                  fontFamily: "Roboto"
+                  canvasColor: primaryColor,
+                  fontFamily: "Roboto",
+                  pageTransitionsTheme: const PageTransitionsTheme(
+                  builders: {
+                    TargetPlatform.android: SharedAxisPageTransitionsBuilder(
+                      transitionType: SharedAxisTransitionType.horizontal,
+                    ),
+                    TargetPlatform.iOS: SharedAxisPageTransitionsBuilder(
+                      transitionType: SharedAxisTransitionType.horizontal,
+                    ),
+                  },
+                ),
               ),
               home: const OnboardingScreen(),
             );

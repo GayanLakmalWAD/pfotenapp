@@ -377,7 +377,6 @@ class _GetPetDetailsScreenState extends State<GetPetDetailsScreen> {
                           ),
                         ),
                       )
-
                     ],
                   ),
                 ),

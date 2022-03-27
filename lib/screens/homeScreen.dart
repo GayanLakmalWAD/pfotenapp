@@ -1,4 +1,6 @@
+import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
+import 'package:pfoten/screens/viewAllRemindersScreen.dart';
 import 'package:pfoten/utils/colors.dart';
 import 'package:sizer/sizer.dart';
 
@@ -96,9 +98,6 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
             children: [
               petDetailCard(),
               todayNotes(),
-              Container(
-                color: Colors.white,
-              )
             ],
           ),
         ),
@@ -228,7 +227,22 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
               ),
               IconButton(
                 icon: const Icon(Icons.apps_sharp, color: primaryColor),
-                onPressed: () => null,
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      PageRouteBuilder(
+                        transitionDuration: Duration(milliseconds: (1000).round()),
+                        pageBuilder: (context, animation, secondaryAnimation) => const ViewAllRemindersScreen(),
+                        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                          return FadeThroughTransition(animation: animation, secondaryAnimation: secondaryAnimation, child: child);
+                        },
+                      )
+                  );
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(builder: (context) => ViewAllRemindersScreen()),
+                  // );
+                },
               ),
             ],
           ),

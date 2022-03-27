@@ -1,4 +1,5 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
+import 'package:animations/animations.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -94,10 +95,29 @@ class _MyHomePageState extends State<MyHomePage>
           onPressed: () {
             _animationController.reset();
             _animationController.forward();
+
+            // OpenContainer(
+            //   transitionDuration: const Duration(milliseconds: 500),
+            //   closedBuilder: (BuildContext c, VoidCallback action) =>
+            //       ElevatedButton(child: Text("Open"),
+            //           onPressed: ()=>action()),
+            //   openBuilder: (BuildContext c, VoidCallback action) => const CreateEditReminderScreen(),
+            //   tappable: true,
+            // );
             Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const CreateEditReminderScreen()),
+                context,
+                PageRouteBuilder(
+                  transitionDuration: Duration(milliseconds: (1000).round()),
+                  pageBuilder: (context, animation, secondaryAnimation) => const CreateEditReminderScreen(),
+                  transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                    return FadeThroughTransition(animation: animation, secondaryAnimation: secondaryAnimation, child: child);
+                  },
+                )
             );
+            // Navigator.push(
+            //   context,
+            //   MaterialPageRoute(builder: (context) => const CreateEditReminderScreen()),
+            // );
           },
         ),
       ),
