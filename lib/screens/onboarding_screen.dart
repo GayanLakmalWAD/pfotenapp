@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pfoten/screens/choosePetScreen.dart';
 import 'package:pfoten/reuasble/customPath.dart';
 import 'package:pfoten/utils/colors.dart';
+import 'package:pfoten/utils/dimensions.dart';
 import 'package:sizer/sizer.dart';
 
 class OnboardingScreen extends StatefulWidget {
@@ -12,7 +13,6 @@ class OnboardingScreen extends StatefulWidget {
 }
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
-
   late int _currentPage = 0;
   final PageController _pageController = PageController(initialPage: 0);
 
@@ -22,50 +22,49 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     });
   }
 
-  Widget onBoardingComponent(String topic, String subTopic, String imgUrl){
-    return Stack(
+  Widget onBoardingComponent(String topic, String subTopic, String imgUrl) {
+    return Column(
       children: [
-        ClipPath(
-          clipper: ClipPathClass(),
-          child:  Container(
-            height: 360,
-            width: MediaQuery.of(context).size.width,
-            color: primaryColor,
-          ),
+        Stack(
+          children: [
+            ClipPath(
+              clipper: ClipPathClass(),
+              child: Container(
+                height: 360,
+                width: MediaQuery.of(context).size.width,
+                color: primaryColor,
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 80, left: 10.w),
+              child: Image.asset(imgUrl, height: 300, width: 300, fit: BoxFit.contain),
+            ),
+          ],
         ),
         Padding(
-          padding: EdgeInsets.only(top: 80, left: 10.w),
-          child: Image.asset(
-              imgUrl,
-              height: 300,
-              width: 300,
-              fit: BoxFit.contain
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(top: 390, left: 20, right: 20),
+          padding: const EdgeInsets.only(left: Dimensions.paddingDefault, right: Dimensions.paddingDefault),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const SizedBox(
-                height: 15,
+                height: Dimensions.paddingDefault,
               ),
               Text(
                 topic,
                 style: TextStyle(
-                    fontFamily: "RobotoSlab",
-                    fontWeight: FontWeight.bold,
-                    fontSize: 24.sp,
+                  fontFamily: "RobotoSlab",
+                  fontWeight: FontWeight.bold,
+                  fontSize: 24.sp,
                 ),
               ),
               const SizedBox(
-                height: 15,
+                height: Dimensions.paddingDefault,
               ),
               Text(
                 subTopic,
                 style: TextStyle(
-                    fontWeight: FontWeight.w300,
-                    fontSize: 10.sp,
+                  fontWeight: FontWeight.w300,
+                  fontSize: 10.sp,
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -80,8 +79,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   Widget build(BuildContext context) {
     final List<Widget> _pages = [
       onBoardingComponent(
-          'OnBoarding 1',
-          "App onboarding is key for one core reason: if users don't understand your app, ... Avoid text-heavy explanations and opt instead for app screenshots.",
+        'OnBoarding 1',
+        "App onboarding is key for one core reason: if users don't understand your app, ... Avoid text-heavy explanations and opt instead for app screenshots.",
         "images/dog.png",
       ),
       onBoardingComponent(
@@ -96,98 +95,94 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       ),
     ];
 
-    return SafeArea(
-        child: Scaffold(
-            body: Column(
-      children: [
-        Expanded(
-          flex: 10,
-          child: Center(
-            child: Container(
-              color: colorWhite,
-              child: Stack(
-                children: [
-                  SizedBox(
-                    child: PageView.builder(
-                            scrollDirection: Axis.horizontal,
-                            onPageChanged: _onchanged,
-                            controller: _pageController,
-                            // itemCount: _pages.length,
-                            itemCount: 3,
-                            itemBuilder: (context, int index) {
-                            return _pages[index];
-                            },
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 67.h),
-                    child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: List<Widget>.generate(_pages.length, (int index) {
-                          return AnimatedContainer(
-                              duration: const Duration(milliseconds: 300),
-                              height: 10,
-                              width: (index == _currentPage) ? 8.w : 2.5.w,
-                              margin:
-                              const EdgeInsets.symmetric(horizontal: 5, vertical: 30),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(5),
-                                  color: (index == _currentPage)
-                                      ? primaryColor
-                                      : primaryColor.withOpacity(0.5)));
-                        })),
-                  ),
+    return Scaffold(
 
-                ],
-              ),
-            ),
-          ),
-        ),
-        Expanded(
-            flex: 2,
-            child: Container(
-              color: colorWhite,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 30),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "Skip",
-                      style: TextStyle(
-                          fontFamily: "RobotoSlab",
-                          fontWeight: FontWeight.w400,
-                          fontSize: 12.sp,
-                          color: primaryColor
+      body: SafeArea(
+        child: Column(
+          children: [
+            Expanded(
+              flex: 10,
+              child: Center(
+                child: Container(
+                  color: kColorWhite,
+                  child: Stack(
+                    children: [
+                      SizedBox(
+                        child: PageView.builder(
+                          scrollDirection: Axis.horizontal,
+                          onPageChanged: _onchanged,
+                          controller: _pageController,
+                          // itemCount: _pages.length,
+                          itemCount: 3,
+                          itemBuilder: (context, int index) {
+                            return _pages[index];
+                          },
+                        ),
                       ),
-                    ),
-                    InkWell(
-                        onTap: () {
-                          if(_currentPage==2){
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => const ChoosePetScreen()),
-                            );
-                          }else{
-                            _pageController.nextPage(
-                                duration: const Duration(milliseconds: 800),
-                                curve: Curves.easeInOutQuint);
-                          }
-                        },
-                        child: CircleAvatar(
-                          backgroundColor: primaryColor,
-                            radius: 18.sp,
-                            child: Icon(Icons.arrow_forward_ios, color: colorWhite, size: 13.sp,)
-                        )
-                    ),
-                  ],
+                      Padding(
+                        padding: EdgeInsets.only(top: 67.h),
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: List<Widget>.generate(_pages.length, (int index) {
+                              return AnimatedContainer(
+                                  duration: const Duration(milliseconds: 300),
+                                  height: 10,
+                                  width: (index == _currentPage) ? 8.w : 2.5.w,
+                                  margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 30),
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(5),
+                                      color: (index == _currentPage) ? primaryColor : primaryColor.withOpacity(0.5)));
+                            })),
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            )
-        )
-      ],
-    ),
+            ),
+            Expanded(
+                flex: 2,
+                child: Container(
+                  color: kColorWhite,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 30),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Skip",
+                          style: TextStyle(
+                              fontFamily: "RobotoSlab",
+                              fontWeight: FontWeight.w400,
+                              fontSize: 12.sp,
+                              color: primaryColor),
+                        ),
+                        InkWell(
+                            onTap: () {
+                              if (_currentPage == 2) {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => const ChoosePetScreen()),
+                                );
+                              } else {
+                                _pageController.nextPage(
+                                    duration: const Duration(milliseconds: 800), curve: Curves.easeInOutQuint);
+                              }
+                            },
+                            child: CircleAvatar(
+                                backgroundColor: primaryColor,
+                                radius: 18.sp,
+                                child: Icon(
+                                  Icons.arrow_forward_ios,
+                                  color: kColorWhite,
+                                  size: 13.sp,
+                                ))),
+                      ],
+                    ),
+                  ),
+                ))
+          ],
         ),
+      ),
     );
   }
 }

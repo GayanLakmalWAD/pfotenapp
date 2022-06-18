@@ -11,7 +11,6 @@ import 'package:pfoten/utils/colors.dart';
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key? key}) : super(key: key);
 
-
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
@@ -56,7 +55,7 @@ class _MyHomePageState extends State<MyHomePage>
     SystemChrome.setSystemUIOverlayStyle(systemTheme);
 
     _animationController = AnimationController(
-      duration: Duration(seconds: 1),
+      duration: const Duration(seconds: 1),
       vsync: this,
     );
     curve = CurvedAnimation(
@@ -81,6 +80,7 @@ class _MyHomePageState extends State<MyHomePage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: scaffoldBackgroundColor,
       extendBody: true,
       body: screenList[_bottomNavIndex],
       floatingActionButton: ScaleTransition(
@@ -90,7 +90,7 @@ class _MyHomePageState extends State<MyHomePage>
           backgroundColor: primaryColor,
           child: const Icon(
             Icons.add,
-            color: colorWhite,
+            color: kColorWhite,
           ),
           onPressed: () {
             _animationController.reset();

@@ -31,6 +31,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
     return DefaultTabController(
       length: myTabs.length,
       child: Scaffold(
+        backgroundColor: scaffoldBackgroundColor,
         appBar: AppBar(
           elevation: 0,
           backgroundColor: primaryColor,
@@ -119,7 +120,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
             height: 110,
             width: 110,
             decoration: const BoxDecoration(
-              color: colorWhite,
+              color: kColorWhite,
               borderRadius: BorderRadius.all(
                 Radius.circular(15),
               ),

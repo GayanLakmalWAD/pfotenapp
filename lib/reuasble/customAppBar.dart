@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:pfoten/utils/colors.dart';
+import 'package:pfoten/utils/dimensions.dart';
 import 'package:sizer/sizer.dart';
-import 'package:vega_power/utils/colors.dart';
-import 'package:vega_power/utils/dimensions.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
@@ -29,19 +29,27 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       elevation: 0,
-      backgroundColor: Colors.transparent,
+      backgroundColor: Colors.red.withOpacity(0),
       centerTitle: true,
       title: Text(
         title,
-        style: TextStyle(fontSize: 15.sp, fontWeight: FontWeight.w600, color: kColorWhite, letterSpacing: 1.5),
+        style: TextStyle(fontSize: 15.sp, fontWeight: FontWeight.w600, color: kColorBlack, letterSpacing: 1.5),
       ),
       leading: (!isHome && isBackButtonExist)
-          ? GestureDetector(
+          ? Padding(
+            padding: const EdgeInsets.only(left: Dimensions.paddingDefault),
+            child: GestureDetector(
         onTap: backOnTap,
-            child: Container(
-             color: Colors.transparent,
-              child: const Icon(Icons.arrow_back_ios, color: Colors.white, ),
+        child: CircleAvatar(
+            backgroundColor: primaryColor,
+            radius: 18.sp,
+            child: const Center(
+              child: BackButton(
+                color: kColorWhite,
+              ),
             ),
+        ),
+      ),
           )
           : Container(),
       actions: [
@@ -58,31 +66,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               )
             : const SizedBox.shrink()
       ],
-      flexibleSpace: Padding(
-        padding: const EdgeInsets.fromLTRB(
-          Dimensions.paddingSmall,
-          40,
-          Dimensions.paddingOverLarge,
-          0,
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            //title underlined image
-            Padding(
-              padding: EdgeInsets.only(top: 5.sp),
-              child: Image.asset(
-                "assets/images/blue_line.png",
-                fit: BoxFit.contain,
-              ),
-            ),
-          ],
-        ),
-      ),
     );
   }
 
   @override
-  Size get preferredSize => const Size(double.maxFinite, 70);
+  Size get preferredSize => const Size(double.maxFinite, 55);
 }

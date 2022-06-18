@@ -57,9 +57,9 @@ class _ViewAllRemindersScreenState extends State<ViewAllRemindersScreen> {
                       selectionColor: Colors.black,
                       selectedTextColor: Colors.white,
                       inactiveDates: [
-                        DateTime.now().add(Duration(days: 3)),
-                        DateTime.now().add(Duration(days: 4)),
-                        DateTime.now().add(Duration(days: 7))
+                        DateTime.now().add(const Duration(days: 3)),
+                        DateTime.now().add(const Duration(days: 4)),
+                        DateTime.now().add(const Duration(days: 7))
                       ],
                       onDateChange: (date) {
                         // // New date selected
@@ -81,63 +81,77 @@ class _ViewAllRemindersScreenState extends State<ViewAllRemindersScreen> {
 
   ///open datepicker
   openDatePicker(){
-    return showDialog(
-        context: context,
-        builder: (_) {
-          return AlertDialog(
-            backgroundColor: Colors.white,
-            shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20))),
-            content: SizedBox(
-              height: 50.h,
-              width: 100.w,
-              child: Column(
-                children: [
-                  SizedBox(
-                    width: 100.w,
-                    child: SfDateRangePicker(
-                      backgroundColor: Colors.white,
-                      // onSelectionChanged: print("heloo"),
-                      selectionMode: DateRangePickerSelectionMode.single,
-                      onSelectionChanged: (DateRangePickerSelectionChangedArgs args) async{
+    return showGeneralDialog(
+        barrierColor: Colors.black.withOpacity(0.5),
+        transitionBuilder: (context, a1, a2, widget) {
+          final curvedValue = Curves.easeInOutBack.transform(a1.value) -   1.0;
+          return Transform(
+            transform: Matrix4.translationValues(0.0, curvedValue * 200, 0.0),
+            child: Opacity(
+              opacity: a1.value,
+              child: AlertDialog(
+                backgroundColor: Colors.white,
+                shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20))),
+                content: SizedBox(
+                  height: 50.h,
+                  width: 100.w,
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        width: 100.w,
+                        child: SfDateRangePicker(
+                          backgroundColor: Colors.white,
+                          // onSelectionChanged: print("heloo"),
+                          selectionMode: DateRangePickerSelectionMode.single,
+                          onSelectionChanged: (DateRangePickerSelectionChangedArgs args) async{
 
-                      },
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 20),
-                    child: Center(
-                      child: GestureDetector(
-                        onTap: (){
-                          ///validate all the feilds then skip alert>>>>
-                          Navigator.pop(context);
-                        },
-                        child: Container(
-                          height: 45,
-                          width: 80.w,
-                          decoration: const BoxDecoration(
-                              borderRadius: BorderRadius.all(
-                                  Radius.circular(10)
+                          },
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 20),
+                        child: Center(
+                          child: GestureDetector(
+                            onTap: (){
+                              ///validate all the feilds then skip alert>>>>
+                              Navigator.pop(context);
+                            },
+                            child: Container(
+                              height: 45,
+                              width: 80.w,
+                              decoration: const BoxDecoration(
+                                  borderRadius: BorderRadius.all(
+                                      Radius.circular(10)
+                                  ),
+                                  color: primaryColor
                               ),
-                              color: primaryColor
-                          ),
-                          child: Center(
-                            child: Text(
-                              'Select',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 13.sp,
-                                  color: colorWhite
+                              child: Center(
+                                child: Text(
+                                  'Select',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 13.sp,
+                                      color: kColorWhite
+                                  ),
+                                ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                    ),
-                  )
-                ],
+                      )
+                    ],
+                  ),
+                ),
               ),
             ),
           );
+        },
+        transitionDuration: const Duration(milliseconds: 300),
+        barrierDismissible: true,
+        barrierLabel: '',
+        context: context,
+        pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
+          return Container();
         }
     );
   }

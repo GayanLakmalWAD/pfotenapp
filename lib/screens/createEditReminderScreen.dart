@@ -312,7 +312,7 @@ class _CreateEditReminderScreenState extends State<CreateEditReminderScreen> {
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 13.sp,
-                                    color: colorWhite
+                                    color: kColorWhite
                                 ),
                               ),
                             ),
