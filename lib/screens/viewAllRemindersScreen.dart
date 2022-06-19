@@ -4,6 +4,9 @@ import 'package:pfoten/utils/colors.dart';
 import 'package:sizer/sizer.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
+import '../utils/dimensions.dart';
+import '../utils/textStyles.dart';
+
 class ViewAllRemindersScreen extends StatefulWidget {
   const ViewAllRemindersScreen({Key? key}) : super(key: key);
 
@@ -68,6 +71,7 @@ class _ViewAllRemindersScreenState extends State<ViewAllRemindersScreen> {
                         // });
                       },
                     ),
+                    SizedBox(height: 1.h),
                     todayNotes(),
                   ],
                 ),
@@ -79,7 +83,7 @@ class _ViewAllRemindersScreenState extends State<ViewAllRemindersScreen> {
     );
   }
 
-  ///open datepicker
+  ///open date picker
   openDatePicker(){
     return showGeneralDialog(
         barrierColor: Colors.black.withOpacity(0.5),
@@ -118,7 +122,7 @@ class _ViewAllRemindersScreenState extends State<ViewAllRemindersScreen> {
                             },
                             child: Container(
                               height: 45,
-                              width: 80.w,
+                              width: 45.w,
                               decoration: const BoxDecoration(
                                   borderRadius: BorderRadius.all(
                                       Radius.circular(10)
@@ -128,9 +132,8 @@ class _ViewAllRemindersScreenState extends State<ViewAllRemindersScreen> {
                               child: Center(
                                 child: Text(
                                   'Select',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 13.sp,
+                                  style: robotoBoldTextStyle.copyWith(
+                                      fontSize: Dimensions.fontSizeDefault,
                                       color: kColorWhite
                                   ),
                                 ),
@@ -161,15 +164,14 @@ class _ViewAllRemindersScreenState extends State<ViewAllRemindersScreen> {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.only(top: 10.0, left: 15, right: 0),
+          padding: const EdgeInsets.only(top: 10.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
                 "29/03/2022",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 15.sp,
+                style: robotoBoldTextStyle.copyWith(
+                  fontSize: Dimensions.fontSizeDefault,
                 ),
               ),
               IconButton(
@@ -187,7 +189,7 @@ class _ViewAllRemindersScreenState extends State<ViewAllRemindersScreen> {
           physics: const NeverScrollableScrollPhysics(),
           itemBuilder: (context, index) {
             return Padding(
-              padding: const EdgeInsets.fromLTRB(10.0, 8.0, 10, 8.0),
+              padding: const EdgeInsets.symmetric(vertical: 8.0),
               child: Container(
                   width: 50.w,
                   decoration: BoxDecoration(
@@ -206,10 +208,8 @@ class _ViewAllRemindersScreenState extends State<ViewAllRemindersScreen> {
                               width: 200,
                               child: Text(
                                 "Vaccination",
-                                style: TextStyle(
-                                  fontSize: 14.sp,
-                                  fontWeight: FontWeight.bold,
-                                  letterSpacing: 0,
+                                style: robotoBoldTextStyle.copyWith(
+                                  fontSize: Dimensions.fontSizeDefault,
                                 ),
                                 textAlign: TextAlign.start,
                               ),
@@ -221,10 +221,9 @@ class _ViewAllRemindersScreenState extends State<ViewAllRemindersScreen> {
                               width: 200,
                               child: Text(
                                 "Sub topic",
-                                style: TextStyle(
-                                  fontSize: 12.sp,
+                                style: robotoBoldTextStyle.copyWith(
                                   fontWeight: FontWeight.w300,
-                                  letterSpacing: 0,
+                                  fontSize: Dimensions.fontSizeExtraSmall,
                                 ),
                                 textAlign: TextAlign.start,
                               ),
@@ -235,12 +234,11 @@ class _ViewAllRemindersScreenState extends State<ViewAllRemindersScreen> {
                             Text(
                               "2022/10/06",
                               textAlign: TextAlign.left,
-                              style: TextStyle(
+                              style: robotoBoldTextStyle.copyWith(
+                                fontSize: Dimensions.fontSizeExtraSmall,
                                 color: const Color(0xffbdbdbd),
-                                fontSize: 12.sp,
                                 fontWeight: FontWeight.w600,
                                 fontStyle: FontStyle.normal,
-                                letterSpacing: 0,
                               ),
                             ),
                           ],

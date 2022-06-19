@@ -11,6 +11,7 @@ import 'package:pfoten/utils/dimensions.dart';
 import 'package:sizer/sizer.dart';
 import 'package:intl/intl.dart';
 
+import '../utils/textStyles.dart';
 import 'bottom_Nav.dart';
 
 class GetPetDetailsScreen extends StatefulWidget {
@@ -96,41 +97,40 @@ class _GetPetDetailsScreenState extends State<GetPetDetailsScreen> {
                               onTap: (){
                                 // _showPicker(context);
                               },
-                              child: CircleAvatar(
-                                radius: 60.sp,
-                                backgroundColor: primaryColor,
-                                child: Image.asset("images/dog.png"),
-                                // _imageFile == null ?
-                                // CircleAvatar(
-                                //   radius: 20,
-                                //   backgroundColor: Colors.white.withOpacity(0.5),
-                                //   backgroundImage:
-                                // ) :
-                                // CircleAvatar(
-                                //   radius: widthScale * 20,
-                                //   backgroundColor: Colors.white,
-                                //   backgroundImage: FileImage(File(_imageFile!.path)),
-                                // ),
+                              child: SizedBox(
+                                height: 25.h,
+                                width: 25.h,
+                                child: CircleAvatar(
+                                  backgroundColor: primaryColor,
+                                  child: Image.asset("images/dog.png"),
+                                  // _imageFile == null ?
+                                  // CircleAvatar(
+                                  //   radius: 20,
+                                  //   backgroundColor: Colors.white.withOpacity(0.5),
+                                  //   backgroundImage:
+                                  // ) :
+                                  // CircleAvatar(
+                                  //   radius: widthScale * 20,
+                                  //   backgroundColor: Colors.white,
+                                  //   backgroundImage: FileImage(File(_imageFile!.path)),
+                                  // ),
+                                ),
                               ),
                             ),
                             Positioned(
                                 bottom: 0,
                                 right: 15,
                                 child: CircleAvatar(
+                                  radius: 3.h,
                                   backgroundColor: secondaryColor,
-                                  radius: 16.sp,
-                                  child: Container(
-                                    height: 35,
-                                    width: 35,
-                                    decoration: const BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: primaryColor,
-                                    ),
+                                  child: CircleAvatar(
+                                    radius: 2.5.h,
+                                    backgroundColor: primaryColor,
                                     child: IconButton(
                                       onPressed: () {
                                         // _showPicker(context);
                                       },
-                                      icon: Icon(Icons.camera_alt_rounded, size: 14.sp,),
+                                      icon: const Icon(Icons.camera_alt_rounded),
                                       color: Colors.white,
                                     ),
                                   ),
@@ -170,15 +170,15 @@ class _GetPetDetailsScreenState extends State<GetPetDetailsScreen> {
                               },
                             ),
                             Padding(
-                              padding: const EdgeInsets.symmetric(vertical: Dimensions.paddingDefault),
+                              padding: const EdgeInsets.symmetric(vertical: Dimensions.paddingOverLarge),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
                                     "Date of Birth",
-                                    style: TextStyle(
+                                    style: robotoRegularTextStyle.copyWith(
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 12.sp,
+                                      fontSize: Dimensions.fontSizeDefault,
                                     ),
                                   ),
                                   GestureDetector(
@@ -190,16 +190,18 @@ class _GetPetDetailsScreenState extends State<GetPetDetailsScreen> {
                                         theme: DatePickerTheme(
                                           headerColor: primaryColor,
                                           backgroundColor: kColorWhite,
-                                          cancelStyle: TextStyle(
+                                          cancelStyle: robotoRegularTextStyle.copyWith(
                                               color: secondaryColor,
-                                              fontSize: 14.sp),
-                                          itemStyle: TextStyle(
-                                              color: kColorBlack,
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 13.sp),
-                                          doneStyle: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 14.sp
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: Dimensions.fontSizeDefault),
+                                          itemStyle:  robotoRegularTextStyle.copyWith(
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: Dimensions.fontSizeDefault,
+                                          ),
+                                          doneStyle:  robotoRegularTextStyle.copyWith(
+                                            fontWeight: FontWeight.w600,
+                                            color: kColorWhite,
+                                            fontSize: Dimensions.fontSizeDefault,
                                           ),
                                         ),
                                         onChanged: (date) {
@@ -219,11 +221,12 @@ class _GetPetDetailsScreenState extends State<GetPetDetailsScreen> {
                                       child: Align(
                                         alignment: Alignment.centerLeft,
                                         child: Text(
-                                          '$dob',
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.w300,
-                                            fontSize: 12.sp,
-                                          ),
+                                          dob,
+                                          style: robotoRegularTextStyle.copyWith(
+                                            fontWeight: FontWeight.w400,
+                                            fontStyle: FontStyle.normal,
+                                            fontSize: Dimensions.fontSizeExtraSmall,
+                                          )
                                         ),
                                       ),
                                     ),
@@ -240,13 +243,14 @@ class _GetPetDetailsScreenState extends State<GetPetDetailsScreen> {
                               children: [
                                 Expanded(
                                   child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                         "Gender",
-                                        style: TextStyle(
+                                        style: robotoBoldTextStyle.copyWith(
                                           fontWeight: FontWeight.bold,
-                                          fontSize: 12.sp,
+                                          fontSize: Dimensions.fontSizeDefault,
                                         ),
                                       ),
                                       DropdownSearch<String>(
@@ -260,7 +264,7 @@ class _GetPetDetailsScreenState extends State<GetPetDetailsScreen> {
                                           ),
                                           iconColor: kColorBlack,
                                         ),
-                                        dropdownButtonProps: const IconButtonProps(
+                                        dropdownButtonProps:  const IconButtonProps(
                                             icon: Icon(Icons.arrow_drop_down_outlined), color: kColorBlack),
                                         onChanged: (location) {
 
@@ -310,9 +314,9 @@ class _GetPetDetailsScreenState extends State<GetPetDetailsScreen> {
                               padding: const EdgeInsets.only(top: 50),
                               child: Text(
                                 "You can add more pets later :)",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w300,
-                                    fontSize: 10.sp
+                                style:  robotoRegularTextStyle.copyWith(
+                                  fontWeight: FontWeight.w300,
+                                  fontSize: Dimensions.fontSizeExtraSmall,
                                 ),
                               ),
                             ),
@@ -329,7 +333,7 @@ class _GetPetDetailsScreenState extends State<GetPetDetailsScreen> {
                                   },
                                   child: Container(
                                     height: 45,
-                                    width: 80.w,
+                                    width: 35.w,
                                     decoration: const BoxDecoration(
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(10)
@@ -339,9 +343,8 @@ class _GetPetDetailsScreenState extends State<GetPetDetailsScreen> {
                                     child: Center(
                                       child: Text(
                                         'Continue',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 13.sp,
+                                        style: robotoBoldTextStyle.copyWith(
+                                            fontSize: Dimensions.fontSizeDefault,
                                             color: kColorWhite
                                         ),
                                       ),

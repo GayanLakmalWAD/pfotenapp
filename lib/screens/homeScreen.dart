@@ -4,6 +4,9 @@ import 'package:pfoten/screens/viewAllRemindersScreen.dart';
 import 'package:pfoten/utils/colors.dart';
 import 'package:sizer/sizer.dart';
 
+import '../utils/dimensions.dart';
+import '../utils/textStyles.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -44,8 +47,14 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                 indicatorWeight: 3,
                 indicatorColor: secondaryColor,
                 labelColor: Colors.white,
-                labelStyle: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize: 16.sp),
-                unselectedLabelStyle: const TextStyle(fontWeight: FontWeight.normal),
+                labelStyle: robotoBoldTextStyle.copyWith(
+                    fontSize: Dimensions.fontSizeLarge,
+                    color: kColorWhite
+                ),
+                unselectedLabelStyle: robotoRegularTextStyle.copyWith(
+                    fontSize: Dimensions.fontSizeDefault,
+                    color: kColorWhite
+                ),
                 controller: _tabController,
                 tabs: myTabs,
               ),
@@ -97,7 +106,13 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
         body: SingleChildScrollView(
           child: Column(
             children: [
+              SizedBox(
+                height: 1.h,
+              ),
               petDetailCard(),
+              SizedBox(
+                height: 1.h,
+              ),
               todayNotes(),
             ],
           ),
@@ -111,100 +126,108 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
     return  Padding(
       padding: const EdgeInsets.all(16.0),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SizedBox(
-            width: 10.w,
-          ),
-          Container(
-            height: 110,
-            width: 110,
-            decoration: const BoxDecoration(
-              color: kColorWhite,
-              borderRadius: BorderRadius.all(
-                Radius.circular(15),
+          const Spacer(),
+          Expanded(
+            flex: 1,
+            child: Container(
+              height: 110,
+              width: 110,
+              decoration: const BoxDecoration(
+                color: kColorWhite,
+                borderRadius: BorderRadius.all(
+                  Radius.circular(15),
+                ),
               ),
-            ),
-            child: Image.asset(
-              "images/dog.png",
-              fit: BoxFit.contain,
+              child: Image.asset(
+                "images/dog.png",
+                fit: BoxFit.contain,
+              ),
             ),
           ),
           SizedBox(
             width: 5.w,
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 10.0, top: 8.0, bottom: 8.0),
-                child: Text.rich(
-                  TextSpan(
-                    children: [
-                      TextSpan(
-                        text: 'Age : ',
-                        style: TextStyle(
-                          fontSize: 12.sp,
-                          fontWeight: FontWeight.bold,
+          Expanded(
+            flex: 2,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 10.0, top: 8.0, bottom: 8.0),
+                  child: Text.rich(
+                    TextSpan(
+                      children: [
+                        TextSpan(
+                          text: 'Age : ',
+                          style: robotoRegularTextStyle.copyWith(
+                            fontWeight: FontWeight.w600,
+                            fontSize: Dimensions.fontSizeDefault,
+                          ),
                         ),
-                      ),
-                      TextSpan(
-                        text: '12 Months',
-                        style: TextStyle(
-                          fontSize: 12.sp,
+                        TextSpan(
+                          text: '12 Months',
+                          style: robotoRegularTextStyle.copyWith(
+                            fontWeight: FontWeight.w300,
+                            fontSize: Dimensions.fontSizeDefault,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 10.0, top: 8.0, bottom: 8.0),
-                child: Text.rich(
-                  TextSpan(
-                    children: [
-                      TextSpan(
-                        text: 'Weight : ',
-                        style: TextStyle(
-                          fontSize: 12.sp,
-                          fontWeight: FontWeight.bold,
+                Padding(
+                  padding: const EdgeInsets.only(left: 10.0, top: 8.0, bottom: 8.0),
+                  child: Text.rich(
+                    TextSpan(
+                      children: [
+                        TextSpan(
+                          text: 'Weight : ',
+                          style: robotoRegularTextStyle.copyWith(
+                            fontWeight: FontWeight.w600,
+                            fontSize: Dimensions.fontSizeDefault,
+                          ),
                         ),
-                      ),
-                      TextSpan(
-                        text: '12 Kg',
-                        style: TextStyle(
-                          fontSize: 12.sp,
+                        TextSpan(
+                          text: '12 Kg',
+                          style: robotoRegularTextStyle.copyWith(
+                            fontWeight: FontWeight.w300,
+                            fontSize: Dimensions.fontSizeDefault,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 10.0, top: 8.0, bottom: 8.0),
-                child: Text.rich(
-                  TextSpan(
-                    children: [
-                      TextSpan(
-                        text: 'Breed : ',
-                        style: TextStyle(
-                          fontSize: 12.sp,
-                          fontWeight: FontWeight.bold,
+                Padding(
+                  padding: const EdgeInsets.only(left: 10.0, top: 8.0, bottom: 8.0),
+                  child: Text.rich(
+                    TextSpan(
+                      children: [
+                        TextSpan(
+                          text: 'Breed : ',
+                          style: robotoRegularTextStyle.copyWith(
+                            fontWeight: FontWeight.w600,
+                            fontSize: Dimensions.fontSizeDefault,
+                          ),
                         ),
-                      ),
-                      TextSpan(
-                        text: 'Labrador',
-                        style: TextStyle(
-                          fontSize: 12.sp,
+                        TextSpan(
+                          text: 'Labrador',
+                          style: robotoRegularTextStyle.copyWith(
+                            fontWeight: FontWeight.w300,
+                            fontSize: Dimensions.fontSizeDefault,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            ],
-          )
+              ],
+            ),
+          ),
+          const Spacer(),
         ],
       ),
     );
@@ -221,9 +244,8 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
             children: [
               Text(
                   "Today",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 15.sp,
+                style: robotoBoldTextStyle.copyWith(
+                    fontSize: Dimensions.fontSizeLarge
                 ),
               ),
               IconButton(
@@ -273,10 +295,8 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                             width: 200,
                             child: Text(
                               "Vaccination",
-                              style: TextStyle(
-                                fontSize: 14.sp,
-                                fontWeight: FontWeight.bold,
-                                letterSpacing: 0,
+                              style: robotoBoldTextStyle.copyWith(
+                                fontSize: Dimensions.fontSizeDefault,
                               ),
                               textAlign: TextAlign.start,
                             ),
@@ -288,10 +308,9 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                             width: 200,
                             child: Text(
                               "Sub topic",
-                              style: TextStyle(
-                                fontSize: 12.sp,
+                              style: robotoBoldTextStyle.copyWith(
                                 fontWeight: FontWeight.w300,
-                                letterSpacing: 0,
+                                fontSize: Dimensions.fontSizeExtraSmall,
                               ),
                               textAlign: TextAlign.start,
                             ),
@@ -302,12 +321,11 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                           Text(
                             "2022/10/06",
                             textAlign: TextAlign.left,
-                            style: TextStyle(
+                            style: robotoBoldTextStyle.copyWith(
+                              fontSize: Dimensions.fontSizeExtraSmall,
                               color: const Color(0xffbdbdbd),
-                              fontSize: 12.sp,
                               fontWeight: FontWeight.w600,
                               fontStyle: FontStyle.normal,
-                              letterSpacing: 0,
                             ),
                           ),
                         ],

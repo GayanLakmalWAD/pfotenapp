@@ -10,9 +10,10 @@ void main() async{
   //orientation - portrait
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
 
+  //status bar customization
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-    statusBarColor: primaryColor,
-    statusBarIconBrightness: Brightness.light
+    statusBarColor: Colors.transparent,
+    statusBarIconBrightness: Brightness.dark
   ));
 
   runApp(const PfotenApp());

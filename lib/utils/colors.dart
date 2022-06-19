@@ -7,3 +7,4 @@ const accentColor = Color(0xffEAFFD0);
 const scaffoldBackgroundColor = Color(0xffEEEEEE);
 const kColorWhite = Colors.white;
 const kColorBlack = Colors.black;
+Color kColorGrey = Colors.grey.shade700;

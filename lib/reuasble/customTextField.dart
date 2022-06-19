@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pfoten/utils/colors.dart';
+import 'package:pfoten/utils/dimensions.dart';
+import 'package:pfoten/utils/textStyles.dart';
 import 'package:sizer/sizer.dart';
 
 class CustomTextField extends StatefulWidget {
@@ -39,27 +41,29 @@ class _CustomTextFieldState extends State<CustomTextField> {
   Widget build(BuildContext context) {
 
     return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
           padding: EdgeInsets.only(top: 1.h),
           child: Text(
               widget.textFieldName!,
-            style: TextStyle(
+            style: robotoRegularTextStyle.copyWith(
               fontWeight: FontWeight.w600,
-              fontSize: 12.sp,
+              fontSize: Dimensions.fontSizeDefault,
             ),
           ),
         ),
         TextField(
           controller: widget.controller,
-          style: TextStyle(
+          style: robotoRegularTextStyle.copyWith(
             fontWeight: FontWeight.w400,
             fontStyle: FontStyle.normal,
-            fontSize: 12.sp,
+            fontSize: Dimensions.fontSizeExtraSmall,
           ),
           textCapitalization: TextCapitalization.sentences,
           keyboardType: widget.textFieldName == "Weight" ? TextInputType.number : TextInputType.text,
+          inputFormatters: (widget.textFieldName == "Weight") ? [FilteringTextInputFormatter.digitsOnly] : [],
           decoration: InputDecoration(
               enabledBorder: const UnderlineInputBorder(
                 borderSide: BorderSide(color: primaryColor),
@@ -67,16 +71,17 @@ class _CustomTextFieldState extends State<CustomTextField> {
               focusedBorder: const UnderlineInputBorder(
                 borderSide: BorderSide(color: secondaryColor),
               ),
-              labelStyle:  TextStyle(
+              labelStyle:  robotoRegularTextStyle.copyWith(
                 fontWeight: FontWeight.w300,
-                fontSize: 12.sp,
+                fontSize: Dimensions.fontSizeDefault,
               ),
               hintText: widget.hint,
-              hintStyle: TextStyle(
-                  color:  Colors.black.withOpacity(widget.isHint ? 0.5 : 1),
+              hintStyle: robotoRegularTextStyle.copyWith(
                   fontWeight: FontWeight.w400,
                   fontStyle: FontStyle.normal,
-                  fontSize: 12.sp),
+                  fontSize: Dimensions.fontSizeExtraSmall,
+                  color:  Colors.black.withOpacity(widget.isHint ? 0.5 : 1),
+              ),
               prefixIcon: widget.prefix,
               suffixIcon: widget.suffix
           ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pfoten/utils/colors.dart';
 import 'package:pfoten/utils/dimensions.dart';
+import 'package:pfoten/utils/textStyles.dart';
 import 'package:sizer/sizer.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -33,17 +34,21 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       centerTitle: true,
       title: Text(
         title,
-        style: TextStyle(fontSize: 15.sp, fontWeight: FontWeight.w600, color: kColorBlack, letterSpacing: 1.5),
+        style: robotoBoldTextStyle.copyWith(
+            fontSize: Dimensions.fontSizeDefault,
+            fontWeight: FontWeight.w600,
+            letterSpacing: 1.5
+        ),
       ),
+      leadingWidth: 60,
       leading: (!isHome && isBackButtonExist)
           ? Padding(
             padding: const EdgeInsets.only(left: Dimensions.paddingDefault),
             child: GestureDetector(
         onTap: backOnTap,
-        child: CircleAvatar(
+        child: const CircleAvatar(
             backgroundColor: primaryColor,
-            radius: 18.sp,
-            child: const Center(
+            child: Center(
               child: BackButton(
                 color: kColorWhite,
               ),

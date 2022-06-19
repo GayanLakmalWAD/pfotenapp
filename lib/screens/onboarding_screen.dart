@@ -3,6 +3,7 @@ import 'package:pfoten/screens/choosePetScreen.dart';
 import 'package:pfoten/reuasble/customPath.dart';
 import 'package:pfoten/utils/colors.dart';
 import 'package:pfoten/utils/dimensions.dart';
+import 'package:pfoten/utils/textStyles.dart';
 import 'package:sizer/sizer.dart';
 
 class OnboardingScreen extends StatefulWidget {
@@ -36,8 +37,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 80, left: 10.w),
-              child: Image.asset(imgUrl, height: 300, width: 300, fit: BoxFit.contain),
+              padding: const EdgeInsets.only(top: 80),
+              child: Center(child: Image.asset(imgUrl, height: 40.h, width: 40.h, fit: BoxFit.contain)),
             ),
           ],
         ),
@@ -51,20 +52,17 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               ),
               Text(
                 topic,
-                style: TextStyle(
-                  fontFamily: "RobotoSlab",
-                  fontWeight: FontWeight.bold,
-                  fontSize: 24.sp,
-                ),
+                style: robotoSlabBoldTextStyle.copyWith(fontSize: Dimensions.fontSizeOverLarge),
               ),
               const SizedBox(
                 height: Dimensions.paddingDefault,
               ),
               Text(
                 subTopic,
-                style: TextStyle(
+                style: robotoRegularTextStyle.copyWith(
                   fontWeight: FontWeight.w300,
-                  fontSize: 10.sp,
+                  color: kColorGrey,
+                  fontSize: Dimensions.fontSizeExtraSmall
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -120,13 +118,13 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(top: 67.h),
+                        padding: EdgeInsets.only(top: 68.h),
                         child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: List<Widget>.generate(_pages.length, (int index) {
                               return AnimatedContainer(
                                   duration: const Duration(milliseconds: 300),
-                                  height: 10,
+                                  height: 1.5.h,
                                   width: (index == _currentPage) ? 8.w : 2.5.w,
                                   margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 30),
                                   decoration: BoxDecoration(
@@ -150,11 +148,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       children: [
                         Text(
                           "Skip",
-                          style: TextStyle(
+                          style: robotoSlabRegularTextStyle.copyWith(
                               fontFamily: "RobotoSlab",
                               fontWeight: FontWeight.w400,
-                              fontSize: 12.sp,
-                              color: primaryColor),
+                              fontSize: Dimensions.fontSizeDefault,
+                              color: primaryColor
+                          ),
                         ),
                         InkWell(
                             onTap: () {
@@ -168,14 +167,19 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                     duration: const Duration(milliseconds: 800), curve: Curves.easeInOutQuint);
                               }
                             },
-                            child: CircleAvatar(
-                                backgroundColor: primaryColor,
-                                radius: 18.sp,
-                                child: Icon(
-                                  Icons.arrow_forward_ios,
-                                  color: kColorWhite,
-                                  size: 13.sp,
-                                ))),
+                            child: const SizedBox(
+                              height: 55,
+                              width: 60,
+                              child: Padding(
+                                padding: EdgeInsets.only(left: Dimensions.paddingDefault),
+                                child: CircleAvatar(
+                                    backgroundColor: primaryColor,
+                                    child: Icon(
+                                      Icons.arrow_forward_ios,
+                                      color: kColorWhite,
+                                    )),
+                              ),
+                            )),
                       ],
                     ),
                   ),

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:pfoten/reuasble/customAppBar.dart';
 import 'package:pfoten/screens/getPetDetailsScreen.dart';
 import 'package:pfoten/utils/colors.dart';
+import 'package:pfoten/utils/dimensions.dart';
+import 'package:pfoten/utils/textStyles.dart';
 import 'package:sizer/sizer.dart';
 
 class Pet {
@@ -60,7 +62,7 @@ class _ChoosePetScreenState extends State<ChoosePetScreen> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: CustomAppBar(
-        title: "Choose your Pet type",
+        title: "",
         isBackButtonExist: true,
         isAction: false,
         backOnTap: () {
@@ -169,12 +171,9 @@ class _ChoosePetScreenState extends State<ChoosePetScreen> {
                                     child: Text(
                                       pets[index].title!,
                                       textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        fontFamily: "RobotoSlab",
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 22.sp,
-                                        color: Colors.black
-                                    ),
+                                      style: robotoSlabBoldTextStyle.copyWith(
+                                          fontSize: Dimensions.fontSizeExtraLarge,
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -209,11 +208,9 @@ class _ChoosePetScreenState extends State<ChoosePetScreen> {
                 child: Center(
                   child: Text(
                     'SELECT',
-                    style: TextStyle(
-                        fontFamily: "RobotoSlab",
-                        fontWeight: FontWeight.bold,
-                        fontSize: 13.sp,
-                        color: kColorWhite
+                    style: robotoBoldTextStyle.copyWith(
+                      fontSize: Dimensions.fontSizeDefault,
+                      color: kColorWhite
                     ),
                   ),
                 ),
