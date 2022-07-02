@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:pfoten/screens/choosePetScreen.dart';
 import 'package:pfoten/reuasble/customPath.dart';
+import 'package:pfoten/screens/signIn_screen.dart';
+import 'package:pfoten/screens/signup_screen.dart';
 import 'package:pfoten/utils/colors.dart';
 import 'package:pfoten/utils/dimensions.dart';
 import 'package:pfoten/utils/textStyles.dart';
@@ -75,6 +78,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   @override
   Widget build(BuildContext context) {
+
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+        statusBarColor: primaryColor,
+        statusBarIconBrightness: Brightness.light
+    ));
+
     final List<Widget> _pages = [
       onBoardingComponent(
         'OnBoarding 1',
@@ -94,7 +103,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     ];
 
     return Scaffold(
-
       body: SafeArea(
         child: Column(
           children: [
@@ -160,7 +168,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                               if (_currentPage == 2) {
                                 Navigator.push(
                                   context,
-                                  MaterialPageRoute(builder: (context) => const ChoosePetScreen()),
+                                  MaterialPageRoute(builder: (context) => SignInScreen()),
                                 );
                               } else {
                                 _pageController.nextPage(

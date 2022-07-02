@@ -1,16 +1,12 @@
-import 'dart:io';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
-import 'package:pfoten/responsive.dart';
 import 'package:pfoten/reuasble/customAppBar.dart';
 import 'package:pfoten/reuasble/customTextField.dart';
-import 'package:pfoten/screens/homeScreen.dart';
 import 'package:pfoten/utils/colors.dart';
 import 'package:pfoten/utils/dimensions.dart';
 import 'package:sizer/sizer.dart';
 import 'package:intl/intl.dart';
-
 import '../utils/textStyles.dart';
 import 'bottom_Nav.dart';
 
@@ -26,7 +22,6 @@ class _GetPetDetailsScreenState extends State<GetPetDetailsScreen> {
   final ageController = TextEditingController();
   final genderController = TextEditingController();
   final weightController = TextEditingController();
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
   String dob = "N/A";
 
   @override
@@ -62,10 +57,9 @@ class _GetPetDetailsScreenState extends State<GetPetDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: CustomAppBar(
-        title: "Pet Details",
+        title: "Pet Information",
         isBackButtonExist: true,
         isAction: false,
         backOnTap: () {
@@ -243,37 +237,43 @@ class _GetPetDetailsScreenState extends State<GetPetDetailsScreen> {
                               children: [
                                 Expanded(
                                   child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.start,
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      Text(
-                                        "Gender",
-                                        style: robotoBoldTextStyle.copyWith(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: Dimensions.fontSizeDefault,
+                                      Padding(
+                                        padding: EdgeInsets.only(top: 1.h),
+                                        child: Text(
+                                          "Gender",
+                                          style: robotoBoldTextStyle.copyWith(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: Dimensions.fontSizeDefault,
+                                          ),
                                         ),
                                       ),
+
                                       DropdownSearch<String>(
-                                        mode: Mode.MENU,
-                                        showSelectedItems: false,
                                         selectedItem: selectedValue,
                                         items: const ["Male", "Female"],
-                                        dropdownSearchDecoration:  const InputDecoration(
-                                          enabledBorder: UnderlineInputBorder(
-                                            borderSide: BorderSide(color: scaffoldBackgroundColor, width: 3),
+                                        dropdownDecoratorProps: const DropDownDecoratorProps(
+                                          dropdownSearchDecoration: InputDecoration(
+                                            enabledBorder: UnderlineInputBorder(
+                                              borderSide: BorderSide(color: scaffoldBackgroundColor, width: 3),
+                                            ),
+                                            iconColor: kColorBlack,
+                                            suffixIcon: Icon(Icons.arrow_drop_down_outlined, color: kColorBlack),
                                           ),
-                                          iconColor: kColorBlack,
                                         ),
-                                        dropdownButtonProps:  const IconButtonProps(
-                                            icon: Icon(Icons.arrow_drop_down_outlined), color: kColorBlack),
+                                        popupProps: const PopupProps.menu(
+                                          showSearchBox: false,
+                                          fit: FlexFit.loose,
+                                          constraints: BoxConstraints(maxHeight: 125),
+                                        ),
                                         onChanged: (location) {
 
                                         },
                                         // selectedItem: "Brazil",
                                       ),
-                                      const SizedBox(
-                                        height: 7,
-                                      ),
+
                                       Container(
                                           height: 1,
                                           color: primaryColor

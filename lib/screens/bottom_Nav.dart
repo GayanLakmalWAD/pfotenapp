@@ -6,7 +6,10 @@ import 'package:flutter/services.dart';
 import 'package:pfoten/screens/createEditReminderScreen.dart';
 import 'package:pfoten/screens/homeScreen.dart';
 import 'package:pfoten/screens/onboarding_screen.dart';
+import 'package:pfoten/screens/settings_screen.dart';
 import 'package:pfoten/utils/colors.dart';
+
+import 'explore_screen.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key? key}) : super(key: key);
@@ -33,9 +36,9 @@ class _MyHomePageState extends State<MyHomePage>
 
   final screenList = const [
     HomeScreen(),
-    OnboardingScreen(),
+    ExploreScreen(),
     HomeScreen(),
-    HomeScreen(),
+    SettingsScreen(),
   ];
 
   final bottomNavNames = [
@@ -48,12 +51,6 @@ class _MyHomePageState extends State<MyHomePage>
   @override
   void initState() {
     super.initState();
-    final systemTheme = SystemUiOverlayStyle.light.copyWith(
-      systemNavigationBarColor: primaryColor,
-      systemNavigationBarIconBrightness: Brightness.light,
-    );
-    SystemChrome.setSystemUIOverlayStyle(systemTheme);
-
     _animationController = AnimationController(
       duration: const Duration(seconds: 1),
       vsync: this,
@@ -79,6 +76,7 @@ class _MyHomePageState extends State<MyHomePage>
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       backgroundColor: scaffoldBackgroundColor,
       extendBody: true,

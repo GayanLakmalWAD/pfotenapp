@@ -35,7 +35,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       title: Text(
         title,
         style: robotoBoldTextStyle.copyWith(
-            fontSize: Dimensions.fontSizeDefault,
+            fontSize: Dimensions.fontSizeLarge,
             fontWeight: FontWeight.w600,
             letterSpacing: 1.5
         ),
