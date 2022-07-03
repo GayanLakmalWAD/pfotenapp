@@ -21,7 +21,7 @@ class SignInScreen extends StatelessWidget {
     return Scaffold(
       appBar: CustomAppBar(
         title: "Sign In",
-        isBackButtonExist: true,
+        isBackButtonExist: false,
         isAction: false,
         backOnTap: () {
           Navigator.pop(context);
@@ -105,8 +105,24 @@ class SignInScreen extends StatelessWidget {
                     ),
                   ),
                 ),
+                Padding(padding: EdgeInsets.only(top: 3.h),
+                child: InkWell(
+                  child: Center(
+                    child: Text(
+                      'Forgot password?',
+                      style: robotoRegularTextStyle.copyWith(
+                          fontSize: Dimensions.fontSizeDefault,
+                          color: Colors.grey.shade700
+                      ),
+                    ),
+                  ),
+                  onTap: () {
+
+                  },
+                )
+                ),
                 Padding(
-                  padding: EdgeInsets.only(top: 5.h),
+                  padding: EdgeInsets.only(top: 3.h),
                   child: Align(
                     alignment: Alignment.center,
                     child: Text.rich(

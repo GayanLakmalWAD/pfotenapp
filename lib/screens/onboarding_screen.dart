@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:pfoten/reuasble/customCircleButton.dart';
 import 'package:pfoten/screens/choosePetScreen.dart';
 import 'package:pfoten/reuasble/customPath.dart';
 import 'package:pfoten/screens/signIn_screen.dart';
@@ -163,31 +164,27 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                               color: primaryColor
                           ),
                         ),
-                        InkWell(
-                            onTap: () {
-                              if (_currentPage == 2) {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(builder: (context) => SignInScreen()),
-                                );
-                              } else {
-                                _pageController.nextPage(
-                                    duration: const Duration(milliseconds: 800), curve: Curves.easeInOutQuint);
-                              }
-                            },
-                            child: const SizedBox(
-                              height: 55,
-                              width: 60,
-                              child: Padding(
-                                padding: EdgeInsets.only(left: Dimensions.paddingDefault),
-                                child: CircleAvatar(
-                                    backgroundColor: primaryColor,
-                                    child: Icon(
-                                      Icons.arrow_forward_ios,
-                                      color: kColorWhite,
-                                    )),
-                              ),
-                            )),
+                        SizedBox(
+                          height: 55,
+                          width: 60,
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: Dimensions.paddingDefault),
+                            child: CustomCircleButton(
+                                iconOnTap: (){
+                                  if (_currentPage == 2) {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(builder: (context) => SignInScreen()),
+                                    );
+                                  } else {
+                                    _pageController.nextPage(
+                                        duration: const Duration(milliseconds: 800), curve: Curves.easeInOutQuint);
+                                  }
+                                },
+                                iconData: Icons.arrow_forward_ios
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ),
