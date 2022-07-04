@@ -2,13 +2,12 @@ import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.da
 import 'package:animations/animations.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:pfoten/screens/createEditReminderScreen.dart';
 import 'package:pfoten/screens/homeScreen.dart';
-import 'package:pfoten/screens/onboarding_screen.dart';
 import 'package:pfoten/screens/settings_screen.dart';
 import 'package:pfoten/utils/colors.dart';
 
+import 'choosePetScreen.dart';
 import 'explore_screen.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -37,7 +36,7 @@ class _MyHomePageState extends State<MyHomePage>
   final screenList = const [
     HomeScreen(),
     ExploreScreen(),
-    HomeScreen(),
+    ChoosePetScreen(),
     SettingsScreen(),
   ];
 

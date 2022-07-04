@@ -1,11 +1,10 @@
 import 'dart:ui';
+
 import 'package:flutter/material.dart';
-import 'package:pfoten/reuasble/customAppBar.dart';
-import 'package:pfoten/screens/getPetDetailsScreen.dart';
+import 'package:pfoten/screens/petProfile.dart';
 import 'package:pfoten/utils/colors.dart';
 import 'package:pfoten/utils/dimensions.dart';
 import 'package:pfoten/utils/textStyles.dart';
-import 'package:sizer/sizer.dart';
 
 class Pet {
   final String? url;
@@ -16,11 +15,11 @@ class Pet {
 
 const pets = [
   Pet(
-      url: 'images/dog1.jfif', title: 'DOG'),
+      url: 'images/dog1.jfif', title: 'TOMMY'),
   Pet(
       url:
       'images/cat1.jfif',
-      title: 'CAT'),
+      title: 'GARFIELD'),
 ];
 
 class ChoosePetScreen extends StatefulWidget {
@@ -61,16 +60,16 @@ class _ChoosePetScreenState extends State<ChoosePetScreen> {
 
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: CustomAppBar(
-        title: "",
-        isBackButtonExist: true,
-        isAction: false,
-        backOnTap: () {
-          Navigator.pop(context);
-        },
-        iconData: Icons.create_outlined,
-        iconOnTap: () {},
-      ),
+      // appBar: CustomAppBar(
+      //   title: "",
+      //   isBackButtonExist: false,
+      //   isAction: false,
+      //   backOnTap: () {
+      //     Navigator.pop(context);
+      //   },
+      //   iconData: Icons.create_outlined,
+      //   iconOnTap: () {},
+      // ),
       body: Stack(
         children: [
           Positioned.fill(
@@ -118,7 +117,7 @@ class _ChoosePetScreenState extends State<ChoosePetScreen> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(bottom: 16.0),
+            padding: const EdgeInsets.only(bottom: 100.0),
             child: PageView.builder(
                 itemCount: pets.length,
                 controller: pageController,
@@ -145,7 +144,7 @@ class _ChoosePetScreenState extends State<ChoosePetScreen> {
                           ),
                           clipBehavior: Clip.hardEdge,
                           child: SizedBox(
-                            height: size.height / 1.5,
+                            height: size.height / 1.8,
                             width: size.width,
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
@@ -188,13 +187,13 @@ class _ChoosePetScreenState extends State<ChoosePetScreen> {
           ),
           Positioned(
             left: size.width / 3.3,
-            bottom: 40,
+            bottom: 130,
             width: size.width / 2.5,
             child: GestureDetector(
               onTap: (){
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const GetPetDetailsScreen()),
+                  MaterialPageRoute(builder: (context) => PetProfileScreen()),
                 );
               },
               child: Container(

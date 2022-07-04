@@ -55,13 +55,10 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         isAction
             ? Padding(
                 padding: const EdgeInsets.only(right: Dimensions.paddingOverLarge),
-                child: GestureDetector(
-                  onTap: iconOnTap,
-                  child: Icon(
-                    iconData,
-                    color: kColorWhite,
-                  ),
-                ),
+                child: CustomCircleButton(
+                  iconOnTap: iconOnTap,
+                  iconData: iconData,
+                )
               )
             : const SizedBox.shrink()
       ],

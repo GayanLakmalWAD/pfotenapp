@@ -1,5 +1,5 @@
-import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
+import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:pfoten/reuasble/customAppBar.dart';
 import 'package:pfoten/reuasble/customTextField.dart';
@@ -10,25 +10,20 @@ import 'package:intl/intl.dart';
 import '../utils/textStyles.dart';
 import 'bottom_Nav.dart';
 
-class GetPetDetailsScreen extends StatefulWidget {
-  const GetPetDetailsScreen({Key? key}) : super(key: key);
+class PetProfileScreen extends StatefulWidget {
+  PetProfileScreen({Key? key}) : super(key: key);
 
   @override
-  _GetPetDetailsScreenState createState() => _GetPetDetailsScreenState();
+  State<PetProfileScreen> createState() => _PetProfileScreenState();
 }
 
-class _GetPetDetailsScreenState extends State<GetPetDetailsScreen> {
+class _PetProfileScreenState extends State<PetProfileScreen> {
   final nameController = TextEditingController();
   final ageController = TextEditingController();
   final genderController = TextEditingController();
   final weightController = TextEditingController();
-  String dob = "N/A";
 
-  @override
-  void dispose() {
-    nameController.dispose();
-    super.dispose();
-  }
+  String dob = "N/A";
 
   bool? validateMobile(String value) {
     if (value.length < 9) {
@@ -50,6 +45,7 @@ class _GetPetDetailsScreenState extends State<GetPetDetailsScreen> {
   }
 
   String? selectedValue;
+
   List<String> items = [
     'Male',
     'Female',
@@ -59,9 +55,9 @@ class _GetPetDetailsScreenState extends State<GetPetDetailsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        title: "Pet Information",
+        title: "Profile",
         isBackButtonExist: true,
-        isAction: false,
+        isAction: true,
         backOnTap: () {
           Navigator.pop(context);
         },
@@ -215,12 +211,12 @@ class _GetPetDetailsScreenState extends State<GetPetDetailsScreen> {
                                       child: Align(
                                         alignment: Alignment.centerLeft,
                                         child: Text(
-                                          dob,
-                                          style: robotoRegularTextStyle.copyWith(
-                                            fontWeight: FontWeight.w400,
-                                            fontStyle: FontStyle.normal,
-                                            fontSize: Dimensions.fontSizeExtraSmall,
-                                          )
+                                            dob,
+                                            style: robotoRegularTextStyle.copyWith(
+                                              fontWeight: FontWeight.w400,
+                                              fontStyle: FontStyle.normal,
+                                              fontSize: Dimensions.fontSizeExtraSmall,
+                                            )
                                         ),
                                       ),
                                     ),
@@ -342,7 +338,7 @@ class _GetPetDetailsScreenState extends State<GetPetDetailsScreen> {
                                     ),
                                     child: Center(
                                       child: Text(
-                                        'Continue',
+                                        'Update',
                                         style: robotoBoldTextStyle.copyWith(
                                             fontSize: Dimensions.fontSizeDefault,
                                             color: kColorWhite
