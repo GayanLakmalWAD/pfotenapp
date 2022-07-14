@@ -6,6 +6,7 @@ class Dimensions {
   static double fontSizeDefault = (SizerUtil.deviceType == DeviceType.mobile) ? 12.sp : 10.sp;
   static double fontSizeLarge = (SizerUtil.deviceType == DeviceType.mobile) ? 15.sp : 13.sp;
   static double fontSizeExtraLarge = (SizerUtil.deviceType == DeviceType.mobile) ? 16.sp : 14.sp;
+  static double fontSizeXLarge = (SizerUtil.deviceType == DeviceType.mobile) ? 18.sp : 16.sp;
   static double fontSizeOverLarge = (SizerUtil.deviceType == DeviceType.mobile) ? 24.sp : 22.sp;
 
   static const double paddingExtraSmall = 10.0;

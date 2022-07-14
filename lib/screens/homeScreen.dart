@@ -1,10 +1,13 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_zoom_drawer/config.dart';
 import 'package:pfoten/screens/viewAllRemindersScreen.dart';
 import 'package:pfoten/utils/colors.dart';
 import 'package:sizer/sizer.dart';
 import '../utils/dimensions.dart';
 import '../utils/textStyles.dart';
+
+final ZoomDrawerController z = ZoomDrawerController();
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -15,60 +18,87 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateMixin{
 
-  static const List<Tab> myTabs = <Tab>[
-    Tab(text: 'Ginger'),
-    Tab(text: 'Shadow'),
-  ];
-
-  late TabController _tabController;
-
-  @override
-  void initState() {
-    super.initState();
-    _tabController = TabController(vsync: this, length: myTabs.length);
-  }
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: scaffoldBackgroundColor,
-      drawerEnableOpenDragGesture: true,
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.red.withOpacity(0),
-        leading: Center(
-          child: Text(
-            "Ginger",
-            style: robotoBoldTextStyle.copyWith(
-                fontSize: Dimensions.fontSizeLarge
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+          drawerEnableOpenDragGesture: true,
+          body: NestedScrollView(
+            headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+              return <Widget>[
+                SliverAppBar(
+                  pinned: true,
+                  floating: true,
+                  leading: const Padding(
+                    padding: EdgeInsets.all(4.0),
+                    child: CircleAvatar(
+                      backgroundColor: secondaryColor,
+                      child: Image(image: AssetImage('images/dog.png')),
+                    ),
+                  ),
+                  leadingWidth: 80,
+                  actions: [
+                    Padding(
+                      padding: const EdgeInsets.only(right: 14.0),
+                      child: IconButton(
+                        icon: const Icon(Icons.notifications_none_sharp, size: 30,),
+                        onPressed: () {
+                          //go to users profile
+                        },
+                      ),
+                    ),
+                  ],
+                  backgroundColor: primaryColor,
+                  expandedHeight: 100.0,
+                  bottom: PreferredSize(
+                    preferredSize: const Size.fromHeight(50),
+                    child: Align(
+                      alignment: Alignment.topCenter,
+                      child: TabBar(
+                        indicatorSize: TabBarIndicatorSize.tab,
+                        isScrollable: true,
+                        indicator: const UnderlineTabIndicator(
+                            borderSide: BorderSide(width: 5.0, color: secondaryColor),
+                            insets: EdgeInsets.symmetric(horizontal: 10.0),
+                        ),
+                        labelStyle: robotoBoldTextStyle.copyWith(
+                            fontSize: Dimensions.fontSizeLarge, color: kColorWhite
+                        ),
+                        unselectedLabelStyle: robotoBoldTextStyle.copyWith(
+                            fontSize: Dimensions.fontSizeLarge, color: kColorWhite
+                        ),
+                        tabs: const [
+                          Tab(child: Text('Ginger')),
+                          Tab(child: Text('Tommy')),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ];
+            },
+            body: TabBarView(
+              children: <Widget>[
+                SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      petDetailCard(),
+                      todayNotes(),
+                    ],
+                  ),
+                ),
+                SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      petDetailCard(),
+                      todayNotes(),
+                    ],
+                  ),
+                )
+              ],
             ),
-          ),
-        ),
-        leadingWidth: 100,
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: Dimensions.paddingExtraLarge),
-            child: CircleAvatar(
-              backgroundColor: primaryColor,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Image.asset("images/dog.png"),
-              ),
-            ),
-          ),
-        ]
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            SizedBox(
-              height: 1.h,
-            ),
-            petDetailCard(),
-            todayNotes(),
-          ],
-        ),
-      ),
+          )),
     );
   }
 
@@ -217,6 +247,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
           itemCount: 3,
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
+          padding: EdgeInsets.zero,
           itemBuilder: (context, index) {
             return Padding(
               padding: const EdgeInsets.fromLTRB(Dimensions.paddingLarge, 8.0, 20, 8.0),
@@ -285,66 +316,6 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
           },
         ),
       ],
-    );
-  }
-
-  ///SideDrawer menu
-  Widget buildMenu() {
-    return SingleChildScrollView(
-      padding: const EdgeInsets.symmetric(vertical: 50.0),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          ListTile(
-            onTap: () {},
-            leading: const Icon(Icons.home, size: 20.0, color: Colors.white),
-            title: const Text("Add Pet"),
-            textColor: Colors.white,
-            dense: true,
-          ),
-          ListTile(
-            onTap: () {},
-            leading: const Icon(Icons.verified_user,
-                size: 20.0, color: Colors.white),
-            title: const Text("Help and feedBack"),
-            textColor: Colors.white,
-            dense: true,
-
-            // padding: EdgeInsets.zero,
-          ),
-          ListTile(
-            onTap: () {},
-            leading: const Icon(Icons.monetization_on,
-                size: 20.0, color: Colors.white),
-            title: const Text("Tell a friend"),
-            textColor: Colors.white,
-            dense: true,
-
-            // padding: EdgeInsets.zero,
-          ),
-          ListTile(
-            onTap: () {},
-            leading:
-            const Icon(Icons.star_border, size: 20.0, color: Colors.white),
-            title: const Text("Rate us"),
-            textColor: Colors.white,
-            dense: true,
-
-            // padding: EdgeInsets.zero,
-          ),
-          ListTile(
-            onTap: () {},
-            leading:
-            const Icon(Icons.settings, size: 20.0, color: Colors.white),
-            title: const Text("Account settings"),
-            textColor: Colors.white,
-            dense: true,
-
-            // padding: EdgeInsets.zero,
-          ),
-        ],
-      ),
     );
   }
 

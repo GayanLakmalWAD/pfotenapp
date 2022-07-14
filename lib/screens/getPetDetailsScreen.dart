@@ -226,7 +226,7 @@ class _GetPetDetailsScreenState extends State<GetPetDetailsScreen> {
                                     ),
                                   ),
                                   Container(
-                                      height: 4,
+                                      height: 2,
                                       color: primaryColor
                                   )
                                 ],
@@ -257,7 +257,7 @@ class _GetPetDetailsScreenState extends State<GetPetDetailsScreen> {
                                         dropdownDecoratorProps: const DropDownDecoratorProps(
                                           dropdownSearchDecoration: InputDecoration(
                                             enabledBorder: UnderlineInputBorder(
-                                              borderSide: BorderSide(color: scaffoldBackgroundColor, width: 3),
+                                              borderSide: BorderSide(color: scaffoldBackgroundColor, width: 2),
                                             ),
                                             iconColor: kColorBlack,
                                             suffixIcon: Icon(Icons.arrow_drop_down_outlined, color: kColorBlack),
@@ -275,7 +275,7 @@ class _GetPetDetailsScreenState extends State<GetPetDetailsScreen> {
                                       ),
 
                                       Container(
-                                          height: 4,
+                                          height: 2,
                                           color: primaryColor
                                       )
                                     ],
@@ -292,9 +292,7 @@ class _GetPetDetailsScreenState extends State<GetPetDetailsScreen> {
                                     hint: "10 kg",
                                     typedText: weightController.text,
                                     obscureText: false,
-                                    onSubmit: (){
-
-                                    },
+                                    onSubmit: (){},
                                     onChangedText: (test){
                                       Future.delayed(const Duration(milliseconds: 1), () {
                                         setState(() {
@@ -304,7 +302,6 @@ class _GetPetDetailsScreenState extends State<GetPetDetailsScreen> {
                                           }
                                         });
                                       });
-
                                     },
                                   ),
                                 ),

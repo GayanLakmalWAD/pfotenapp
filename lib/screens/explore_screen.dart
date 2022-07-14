@@ -14,7 +14,7 @@ class ExploreScreen extends StatelessWidget {
     return Scaffold(
       appBar: CustomAppBar(
         title: "Explore Tips",
-        isBackButtonExist: true,
+        isBackButtonExist: false,
         isAction: false,
         backOnTap: () {
           Navigator.pop(context);

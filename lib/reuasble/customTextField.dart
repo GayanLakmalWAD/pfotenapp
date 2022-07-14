@@ -66,10 +66,10 @@ class _CustomTextFieldState extends State<CustomTextField> {
           inputFormatters: (widget.textFieldName == "Weight") ? [FilteringTextInputFormatter.digitsOnly] : [],
           decoration: InputDecoration(
               enabledBorder: const UnderlineInputBorder(
-                borderSide: BorderSide(color: primaryColor, width: 3),
+                borderSide: BorderSide(color: primaryColor, width: 2),
               ),
               focusedBorder: const UnderlineInputBorder(
-                borderSide: BorderSide(color: secondaryColor, width: 3),
+                borderSide: BorderSide(color: secondaryColor, width: 2),
               ),
               labelStyle:  robotoRegularTextStyle.copyWith(
                 fontWeight: FontWeight.w300,

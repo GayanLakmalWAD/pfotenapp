@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pfoten/reuasble/customAppBar.dart';
+import 'package:pfoten/utils/colors.dart';
 import 'package:settings_ui/settings_ui.dart';
 
 class SettingsScreen extends StatelessWidget {
@@ -10,7 +11,7 @@ class SettingsScreen extends StatelessWidget {
     return Scaffold(
       appBar: CustomAppBar(
         title: "Settings",
-        isBackButtonExist: true,
+        isBackButtonExist: false,
         isAction: false,
         backOnTap: () {
           Navigator.pop(context);
@@ -19,6 +20,9 @@ class SettingsScreen extends StatelessWidget {
         iconOnTap: () {},
       ),
       body: SettingsList(
+        lightTheme: const SettingsThemeData(
+          settingsListBackground: kColorWhite
+        ),
         sections: [
           SettingsSection(
             title: const Text('Preferences'),

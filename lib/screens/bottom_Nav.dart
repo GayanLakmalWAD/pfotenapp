@@ -6,7 +6,6 @@ import 'package:pfoten/screens/createEditReminderScreen.dart';
 import 'package:pfoten/screens/homeScreen.dart';
 import 'package:pfoten/screens/settings_screen.dart';
 import 'package:pfoten/utils/colors.dart';
-
 import 'choosePetScreen.dart';
 import 'explore_screen.dart';
 
@@ -28,8 +27,8 @@ class _MyHomePageState extends State<MyHomePage>
 
   final iconList = <IconData>[
     Icons.home,
-    Icons.brightness_4,
-    Icons.brightness_6,
+    Icons.explore,
+    Icons.supervised_user_circle_sharp,
     Icons.settings,
   ];
 
@@ -145,6 +144,7 @@ class _MyHomePageState extends State<MyHomePage>
             ],
           );
         },
+        splashRadius: 0,
         backgroundColor: primaryColor,
         activeIndex: _bottomNavIndex,
         splashColor: secondaryColor,

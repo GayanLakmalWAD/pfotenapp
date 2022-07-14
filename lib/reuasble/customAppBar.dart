@@ -30,12 +30,13 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       elevation: 0,
+      leadingWidth: 8,
       backgroundColor: Colors.red.withOpacity(0),
-      centerTitle: true,
+      centerTitle: false,
       title: Text(
         title,
         style: robotoBoldTextStyle.copyWith(
-            fontSize: Dimensions.fontSizeLarge,
+            fontSize: Dimensions.fontSizeXLarge,
             fontWeight: FontWeight.w600,
             letterSpacing: 1.5
         ),
@@ -50,7 +51,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           iconOnTap: backOnTap
         ),
       )
-          : Container(),
+          : const SizedBox.shrink(),
       actions: [
         isAction
             ? Padding(
